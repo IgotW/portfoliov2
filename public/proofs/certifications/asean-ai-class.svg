@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560" viewBox="0 0 800 560" fill="none">
+  <rect width="800" height="560" rx="16" fill="#EEF1F6"/>
+  <rect x="48" y="48" width="704" height="464" rx="12" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2"/>
+  <rect x="120" y="96" width="560" height="8" rx="4" fill="#0052FF" opacity="0.35"/>
+  <text x="400" y="170" text-anchor="middle" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Certification Proof</text>
+  <text x="400" y="220" text-anchor="middle" fill="#4B5563" font-family="Inter, Arial, sans-serif" font-size="18">ASEAN AI Class</text>
+  <text x="400" y="300" text-anchor="middle" fill="#9CA3AF" font-family="Inter, Arial, sans-serif" font-size="15">Replace this file with your certificate or photo</text>
+  <text x="400" y="330" text-anchor="middle" fill="#9CA3AF" font-family="Inter, Arial, sans-serif" font-size="13">public/proofs/certifications/asean-ai-class.jpg</text>
+</svg>
