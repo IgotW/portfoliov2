@@ -15,6 +15,7 @@ import profilePicture from "./assets/graduation_pic_enhanced.jpg";
 import papaiaMockup from "./assets/papaia/papaia_mockup.png";
 import brgyMockup from "./assets/brgyonestop/brgy-mockup.png";
 import kulasImg from "./assets/kulas/kulas.png";
+import loadoutMockup from "./assets/loadout/loadout_mockup.png";
 import {
   IconSun,
   IconMoon,
@@ -438,7 +439,7 @@ function App() {
     BrgyOneStop: brgyMockup,
     KulasDesign: kulasImg,
     CCSync: projectGalleryMap.CCSync?.[0],
-    LoadOut: projectGalleryMap.LoadOut?.[0],
+    LoadOut: loadoutMockup,
   };
 
   const handleProofClick = (item) => {

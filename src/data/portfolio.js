@@ -51,7 +51,7 @@ export const projects = [
     title: "LoadOut",
     description:
       "Developed an IoT with mobile application, a smart multi bin that is automatically opens and it can track the fill level and receive fill alerts for the household residents over firebase real-time database.",
-    image: "/projects/loadout.svg",
+    image: "/src/assets/loadout/loadout_mockup.png",
     tech: ["Kotlin", "Node.js", "Firebase", "C++"],
     source: "https://github.com/IgotW/loadout-v2.git",
   },
