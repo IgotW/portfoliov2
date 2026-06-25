@@ -11,15 +11,102 @@ import {
 } from "./data/portfolio";
 import "./App.css";
 import profilePhoto from "./assets/college_grad.jpg";
+import profilePicture from "./assets/graduation_pic_enhanced.jpg";
 import papaiaMockup from "./assets/papaia/papaia_mockup.png";
 import brgyMockup from "./assets/brgyonestop/brgy-mockup.png";
 import kulasImg from "./assets/kulas/kulas.png";
-import { IconSun, IconMoon, IconX } from "@tabler/icons-react";
+import {
+  IconSun,
+  IconMoon,
+  IconX,
+  IconChevronLeft,
+  IconChevronRight,
+  IconBrandGithub,
+  IconArrowRight,
+} from "@tabler/icons-react";
 
 const sampleSvg1 = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><rect width='100%' height='100%' fill='%23E6F0FF'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='56' fill='%23003' font-family='Arial'>Sample UI 1</text></svg>`;
 const sampleSvg2 = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><rect width='100%' height='100%' fill='%23FFF4E6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='56' fill='%23033' font-family='Arial'>Sample UI 2</text></svg>`;
 const sampleImg1 = `data:image/svg+xml;utf8,${encodeURIComponent(sampleSvg1)}`;
 const sampleImg2 = `data:image/svg+xml;utf8,${encodeURIComponent(sampleSvg2)}`;
+
+const papaiaGallery = Object.entries(
+  import.meta.glob("./assets/papaia/*.{png,jpg,jpeg,svg}", { eager: true }),
+)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, module]) => module.default);
+
+const brgyGallery = Object.entries(
+  import.meta.glob("./assets/brgyonestop/*.{png,jpg,jpeg,svg}", {
+    eager: true,
+  }),
+)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, module]) => module.default);
+
+const ccsyncGallery = Object.entries(
+  import.meta.glob("./assets/ccsync/*.{png,jpg,jpeg,svg}", { eager: true }),
+)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, module]) => module.default);
+
+const loadoutGallery = Object.entries(
+  import.meta.glob("./assets/loadout/*.{png,jpg,jpeg,svg}", { eager: true }),
+)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, module]) => module.default);
+
+const kulasGallery = Object.entries(
+  import.meta.glob("./assets/kulas/*.{png,jpg,jpeg,svg}", { eager: true }),
+)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, module]) => module.default);
+
+const achievementProofImages = {
+  "Best in Capstone - Social Relevance Award": new URL(
+    "./assets/certificates/achievements/Best_in_Capstone.jpg",
+    import.meta.url,
+  ).href,
+  "Capstone Paper Accepted in 12th International Conference on Education and Training Technologies (ICETT)":
+    new URL("./assets/certificates/achievements/ICETT.png", import.meta.url)
+      .href,
+  "Innovate Cebu 2nd Runner-up": new URL(
+    "./assets/certificates/achievements/InnovateCebu.jpg",
+    import.meta.url,
+  ).href,
+};
+
+const certificationProofImages = {
+  "GoTeam Artificial Intelligence for Communities Workshop": new URL(
+    "./assets/certificates/certifications/goteam-ai.png",
+    import.meta.url,
+  ).href,
+  // "Introduction to Cybersecurity": new URL(
+  //   "./assets/certificates/certifications/cybersecurity.jpg",
+  //   import.meta.url,
+  // ).href,
+  "ASEAN AI Class": new URL(
+    "./assets/certificates/certifications/asean-ai.png",
+    import.meta.url,
+  ).href,
+  "CCNA: Switching, Routing, and Wireless Essentials": new URL(
+    "./assets/certificates/certifications/ccna-switch_routing_wireless.jpg",
+    import.meta.url,
+  ).href,
+  "CCNA7: Introduction to Cybersecurity": new URL(
+    "./assets/certificates/certifications/cybersecurity.jpg",
+    import.meta.url,
+  ).href,
+};
+
+const projectGalleryMap = {
+  Papaia: papaiaGallery,
+  BrgyOneStop: brgyGallery,
+  CCSync: ccsyncGallery,
+  LoadOut: loadoutGallery,
+  KulasDesign: kulasGallery,
+};
+
 function DarkModeToggle({ darkMode, onToggle }) {
   return (
     <button
@@ -106,10 +193,8 @@ function ProofModal({ item, onClose }) {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") onClose();
     };
-
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
@@ -154,6 +239,7 @@ function ProofModal({ item, onClose }) {
   );
 }
 
+// ─── Redesigned Project Modal ────────────────────────────────────────────────
 function ProjectModal({
   project,
   images,
@@ -169,10 +255,8 @@ function ProjectModal({
       if (event.key === "ArrowLeft") onPrev();
       if (event.key === "ArrowRight") onNext();
     };
-
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
@@ -181,64 +265,133 @@ function ProjectModal({
 
   if (!project) return null;
 
+  const total = images.length;
+
   return (
     <div
-      className="proof-modal project-modal"
+      className="pm-backdrop"
       role="dialog"
       aria-modal="true"
+      aria-labelledby="pm-title"
       onClick={onClose}
     >
-      <div
-        className="proof-modal__content"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          type="button"
-          className="proof-modal__close"
-          onClick={onClose}
-          aria-label="Close project viewer"
-        >
-          <IconX size={20} aria-hidden="true" />
-        </button>
-
-        <div className="project-carousel">
+      <div className="pm" onClick={(e) => e.stopPropagation()}>
+        {/* ── Carousel ── */}
+        <div className="pm-carousel">
+          {/* Close */}
           <button
             type="button"
-            className="carousel-nav carousel-nav--left"
-            onClick={onPrev}
-            aria-label="Previous image"
+            className="pm-close"
+            onClick={onClose}
+            aria-label="Close project viewer"
           >
-            ◀
+            <IconX size={16} aria-hidden="true" />
           </button>
 
+          {/* Counter */}
+          {total > 1 && (
+            <span className="pm-counter">
+              {index + 1} / {total}
+            </span>
+          )}
+
+          {/* Image */}
           <img
+            key={index}
             src={images[index]}
             alt={`${project.title} screenshot ${index + 1}`}
-            className="proof-modal__image"
+            className="pm-image"
           />
 
-          <button
-            type="button"
-            className="carousel-nav carousel-nav--right"
-            onClick={onNext}
-            aria-label="Next image"
-          >
-            ▶
-          </button>
+          {/* Arrows */}
+          {total > 1 && (
+            <>
+              <button
+                type="button"
+                className="pm-arrow pm-arrow--left"
+                onClick={onPrev}
+                aria-label="Previous image"
+              >
+                <IconChevronLeft size={18} aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                className="pm-arrow pm-arrow--right"
+                onClick={onNext}
+                aria-label="Next image"
+              >
+                <IconChevronRight size={18} aria-hidden="true" />
+              </button>
+
+              {/* Dot indicators */}
+              <div className="pm-dots" role="tablist">
+                {images.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    role="tab"
+                    aria-selected={i === index}
+                    aria-label={`Go to image ${i + 1}`}
+                    className={`pm-dot ${i === index ? "pm-dot--active" : ""}`}
+                    onClick={() => setIndex(i)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
-        <div className="proof-modal__footer" style={{ alignItems: "center" }}>
-          <h3 className="proof-modal__title">{project.title}</h3>
-          <div style={{ display: "flex", gap: 8 }}>
-            {images.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => setIndex(i)}
-                aria-label={`Show image ${i + 1}`}
-                className={`carousel-dot ${i === index ? "is-active" : ""}`}
-              />
-            ))}
+        {/* ── Body ── */}
+        <div className="pm-body">
+          {/* Tech tags */}
+          {project.tech && project.tech.length > 0 && (
+            <div className="pm-tags">
+              {project.tech.map((t) => (
+                <span key={t} className="pm-tag">
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <h2 id="pm-title" className="pm-title">
+            {project.title}
+          </h2>
+          <p className="pm-desc">{project.description}</p>
+
+          {/* Footer: source link + thumbnail strip */}
+          <div className="pm-footer">
+            {project.source && (
+              <a
+                href={project.source}
+                className="pm-link"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <IconBrandGithub size={15} aria-hidden="true" />
+                Source code
+                <IconArrowRight size={14} aria-hidden="true" />
+              </a>
+            )}
+
+            {total > 1 && (
+              <div className="pm-thumbs">
+                {images.map((src, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className={`pm-thumb ${i === index ? "pm-thumb--active" : ""}`}
+                    onClick={() => setIndex(i)}
+                    aria-label={`Go to image ${i + 1}`}
+                  >
+                    <img
+                      src={src}
+                      alt={`${project.title} thumbnail ${i + 1}`}
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -246,6 +399,7 @@ function ProjectModal({
   );
 }
 
+// ─── App ─────────────────────────────────────────────────────────────────────
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem("theme");
@@ -279,10 +433,20 @@ function App() {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
 
-  const projectImages = {
+  const projectPreviewImages = {
     Papaia: papaiaMockup,
-    "Brgy OneStop": brgyMockup,
-    "Kulas Design": kulasImg,
+    BrgyOneStop: brgyMockup,
+    KulasDesign: kulasImg,
+    CCSync: projectGalleryMap.CCSync?.[0],
+    LoadOut: projectGalleryMap.LoadOut?.[0],
+  };
+
+  const handleProofClick = (item) => {
+    const proof =
+      achievementProofImages[item.title] ||
+      certificationProofImages[item.title] ||
+      item.proof;
+    setProofItem({ ...item, proof });
   };
 
   return (
@@ -296,7 +460,7 @@ function App() {
 
           <div className="header-card__profile">
             <img
-              src={profilePhoto}
+              src={profilePicture}
               alt={profile.name}
               className="header-card__photo"
             />
@@ -309,8 +473,6 @@ function App() {
                 {profile.location}
               </p>
               <span className="role-badge">{profile.role}</span>
-
-              {/* Action buttons: Email + quick link to projects */}
               <div className="header-card__actions">
                 <a
                   href={`mailto:${profile.email}`}
@@ -357,23 +519,42 @@ function App() {
                 {projects.map((project) => (
                   <article key={project.title} className="project-card">
                     <div
-                      type="button"
                       className="project-card__btn"
                       onClick={() => {
-                        const imgs = [
-                          projectImages[project.title] || project.image,
-                          sampleImg1,
-                          sampleImg2,
-                        ];
+                        const imgs =
+                          projectGalleryMap[project.title]?.length > 0
+                            ? projectGalleryMap[project.title]
+                            : [
+                                projectPreviewImages[project.title] ||
+                                  project.image,
+                              ];
                         setProjectModal(project);
                         setProjectModalIndex(0);
                         setProjectModalImages(imgs);
+                      }}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          const imgs =
+                            projectGalleryMap[project.title]?.length > 0
+                              ? projectGalleryMap[project.title]
+                              : [
+                                  projectPreviewImages[project.title] ||
+                                    project.image,
+                                ];
+                          setProjectModal(project);
+                          setProjectModalIndex(0);
+                          setProjectModalImages(imgs);
+                        }
                       }}
                       aria-label={`Open ${project.title} gallery`}
                     >
                       <div className="project-card__image-wrap">
                         <img
-                          src={projectImages[project.title] || project.image}
+                          src={
+                            projectPreviewImages[project.title] || project.image
+                          }
                           alt={`${project.title} preview`}
                           className="project-card__image"
                         />
@@ -394,6 +575,7 @@ function App() {
                           className="project-card__link"
                           target="_blank"
                           rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                         >
                           Source Code
                           <span aria-hidden="true">→</span>
@@ -416,7 +598,7 @@ function App() {
               <h2 className="card__title">Achievements</h2>
               <ProofListSection
                 items={achievements}
-                onProofClick={setProofItem}
+                onProofClick={handleProofClick}
               />
             </Card>
 
@@ -424,7 +606,7 @@ function App() {
               <h2 className="card__title">Certifications</h2>
               <ProofListSection
                 items={certifications}
-                onProofClick={setProofItem}
+                onProofClick={handleProofClick}
               />
             </Card>
 

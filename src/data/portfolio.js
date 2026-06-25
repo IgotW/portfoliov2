@@ -43,7 +43,7 @@ export const projects = [
     title: "Kulas Design",
     description:
       "Designed and developed a professional business website for KULAS DESIGN to establish its online presence and strengthen brand visibility.",
-    image: "/projects/loadout.svg",
+    image: "/src/assets/kulas/kulas.png",
     tech: ["React", "Vite", "Tailwind", "Render"],
     source: "https://github.com/IgotW/KulasDesign.git",
   },
