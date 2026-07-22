@@ -59,7 +59,7 @@ export const projects = [
     title: "CCSync",
     description:
       "Developed a web system that can be used in our college department to manage events, registration, and memberships  of students.",
-    image: "/projects/ccsync.svg",
+    image: "/src/assets/ccsync/AALanding_Page.png",
     tech: ["HTML", "CSS", "Javascript", "Bootstrap", "MySQL", "PHP"],
     source: "https://github.com/radleigh123/ccsync-v1.git",
   },

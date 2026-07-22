@@ -13,9 +13,9 @@ import "./App.css";
 import profilePhoto from "./assets/college_grad.jpg";
 import profilePicture from "./assets/graduation_pic_enhanced.jpg";
 import papaiaMockup from "./assets/papaia/papaia_mockup.png";
-import brgyMockup from "./assets/brgyonestop/brgy-mockup.png";
-import kulasImg from "./assets/kulas/kulas.png";
-import loadoutMockup from "./assets/loadout/loadout_mockup.png";
+import brgyMockup from "./assets/brgyonestop/0brgy-mockup.png";
+import kulasImg from "./assets/kulas/kulas_section1.png";
+import loadoutMockup from "./assets/loadout/Aloadout_mockup.png";
 import {
   IconSun,
   IconMoon,
@@ -103,9 +103,9 @@ const certificationProofImages = {
 const projectGalleryMap = {
   Papaia: papaiaGallery,
   BrgyOneStop: brgyGallery,
+  "Kulas Design": kulasGallery,
   CCSync: ccsyncGallery,
   LoadOut: loadoutGallery,
-  KulasDesign: kulasGallery,
 };
 
 function DarkModeToggle({ darkMode, onToggle }) {
@@ -437,7 +437,8 @@ function App() {
   const projectPreviewImages = {
     Papaia: papaiaMockup,
     BrgyOneStop: brgyMockup,
-    KulasDesign: kulasImg,
+    // KulasDesign: kulasImg,
+    KulasDesign: projectGalleryMap.KulasDesign?.[0] || kulasImg,
     CCSync: projectGalleryMap.CCSync?.[0],
     LoadOut: loadoutMockup,
   };
