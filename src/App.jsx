@@ -437,7 +437,7 @@ function App() {
   const projectPreviewImages = {
     Papaia: papaiaMockup,
     BrgyOneStop: brgyMockup,
-    KulasDesign: projectGalleryMap.KulasDesign?.[0],
+    KulasDesign: kulasImg,
     CCSync: projectGalleryMap.CCSync?.[0],
     LoadOut: loadoutMockup,
   };
