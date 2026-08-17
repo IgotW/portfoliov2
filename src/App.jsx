@@ -10,7 +10,6 @@ import {
   techStack,
 } from "./data/portfolio";
 import "./App.css";
-import profilePhoto from "./assets/college_grad.jpg";
 import profilePicture from "./assets/graduation_pic_enhanced.jpg";
 import papaiaMockup from "./assets/papaia/papaia_mockup.png";
 import brgyMockup from "./assets/brgyonestop/0brgy-mockup.png";
@@ -25,11 +24,6 @@ import {
   IconBrandGithub,
   IconArrowRight,
 } from "@tabler/icons-react";
-
-const sampleSvg1 = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><rect width='100%' height='100%' fill='%23E6F0FF'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='56' fill='%23003' font-family='Arial'>Sample UI 1</text></svg>`;
-const sampleSvg2 = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><rect width='100%' height='100%' fill='%23FFF4E6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='56' fill='%23033' font-family='Arial'>Sample UI 2</text></svg>`;
-const sampleImg1 = `data:image/svg+xml;utf8,${encodeURIComponent(sampleSvg1)}`;
-const sampleImg2 = `data:image/svg+xml;utf8,${encodeURIComponent(sampleSvg2)}`;
 
 const papaiaGallery = Object.entries(
   import.meta.glob("./assets/papaia/*.{png,jpg,jpeg,svg}", { eager: true }),

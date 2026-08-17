@@ -2,7 +2,7 @@ export const profile = {
   name: "Went Ruzel Igot",
   location: "Cebu City, Philippines",
   role: "Full Stack Developer",
-  email: "wentruzeligot@gmail.com",
+  email: "wntrzlgt.17@gmail.com",
   calendly: "#",
   resume: "#",
   photo: "/profile.svg",
@@ -38,6 +38,8 @@ export const projects = [
       "GeminiAPI",
     ],
     source: "https://github.com/IgotW/Papaia-Mobile.git",
+    // Add a demoUrl here when the project video is ready to share.
+    demoUrl: "",
   },
   {
     title: "Kulas Design",
@@ -46,6 +48,8 @@ export const projects = [
     image: "/projects/kulas.png",
     tech: ["React", "Vite", "Tailwind", "Render"],
     source: "https://github.com/IgotW/KulasDesign.git",
+    // Add the published Kulas URL here to show the optional Live Site button.
+    liveUrl: "",
   },
   {
     title: "LoadOut",
@@ -54,6 +58,7 @@ export const projects = [
     image: "/src/assets/loadout/loadout_mockup.png",
     tech: ["Kotlin", "Node.js", "Firebase", "C++"],
     source: "https://github.com/IgotW/loadout-v2.git",
+    liveUrl: "",
   },
   {
     title: "CCSync",
@@ -62,6 +67,7 @@ export const projects = [
     image: "/src/assets/ccsync/AALanding_Page.png",
     tech: ["HTML", "CSS", "Javascript", "Bootstrap", "MySQL", "PHP"],
     source: "https://github.com/radleigh123/ccsync-v1.git",
+    liveUrl: "",
   },
   {
     title: "BrgyOneStop",
@@ -70,6 +76,7 @@ export const projects = [
     image: "/projects/brgy-onestop.svg",
     tech: ["Kotlin", "Node.js", "Express.js", "MongoDB"],
     source: "https://github.com/IgotW/BrgyOneStop.git",
+    liveUrl: "",
   },
 ];
 
@@ -91,7 +98,7 @@ export const achievements = [
     title:
       "Capstone Paper Accepted in 12th International Conference on Education and Training Technologies (ICETT)",
     year: "2026",
-    proof: "/proofs/achievements/icett-paper-accepted.svg",
+    proof: "/certs/achievements/Best_in_Capstone.jpg",
   },
   {
     title: "Innovate Cebu 2nd Runner-up",
@@ -127,9 +134,9 @@ export const certifications = [
     proof: "/proofs/certifications/ccna-switching-routing.svg",
   },
   {
-    title: "CCNA7: Introduction to Cybersecurity",
+    title: "CCNA7: Introduction to Networks",
     year: "2024",
-    proof: "/proofs/certifications/ccna7-cybersecurity.svg",
+    proof: "/proofs/certifications/ccna7-networks.svg",
   },
 ];
 
