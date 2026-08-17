@@ -47,6 +47,7 @@ import aseanProof from "./assets/certificates/certifications/asean-ai.png";
 import switchingProof from "./assets/certificates/certifications/ccna-switch_routing_wireless.jpg";
 import cybersecurityProof from "./assets/certificates/certifications/cybersecurity.jpg";
 import introCcnaProof from "./assets/certificates/certifications/ccna-intro.jpg";
+import PortfolioChat from "./PortfolioChat";
 import "./PortfolioV3.css";
 
 const projectImages = {
@@ -541,6 +542,7 @@ export default function PortfolioV3() {
       </footer>
       <ProjectDialog project={project} onClose={() => setProject(null)} />
       <CredentialDialog item={credential} onClose={() => setCredential(null)} />
+      <PortfolioChat />
     </div>
   );
 }
